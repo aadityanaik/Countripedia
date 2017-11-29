@@ -4,3 +4,6 @@ Uses the restcountries api.<br/>
 
 # API Information
 [REST Countries](https://restcountries.eu/)
+
+# Dependency
+[Gson] (https://github.com/google/gson)
