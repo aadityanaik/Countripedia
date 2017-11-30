@@ -19,6 +19,7 @@ public class Main {
 			Country[] result = parser.fromJson(output, Country[].class);
 			for(Country c : result) {
 				System.out.println(c);
+				System.out.println("To learn more, visit- https://www.wikipedia.org/wiki/" + input.replace(" ", "%20"));
 			}
 		} catch(FileNotFoundException e) {
 			System.err.println("Could not get result");

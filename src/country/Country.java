@@ -1,6 +1,8 @@
 package country;
 
+import com.google.gson.Gson;
 import java.net.URL;
+import internet_manager.ApiHandler;
 
 class Language {
 	String name, nativeName;
@@ -20,6 +22,10 @@ class Currency {
 	}
 }
 
+class Neighbour {
+	String name;
+}
+
 public class Country {
 	String name, capital;
 	String[] topLevelDomain;
@@ -30,10 +36,29 @@ public class Country {
 	long population;
 	String demonym;
 	double area;
-	String[] timezones, borders;
+	String[] timezones;
+	String[] borders;
 	String nativeName, numericCode;
 	Language[] languages;
 	Currency[] currencies;
+
+	Neighbour[] neighbours;
+
+	void getNeighbours() {
+		neighbours = new Neighbour[borders.length];
+
+		for(int i = 0; i < borders.length; i++) {
+			try{
+				//some bad code ahead
+				neighbours[i] = new Gson().fromJson(
+					new ApiHandler("https://restcountries.eu/rest/v2/alpha/" + borders[i] + "?fields=name").generateGetResponse(),
+					Neighbour.class);
+			} catch(Exception e) {
+				System.err.println(e);
+				neighbours[i].name = "";
+			}
+		}
+	}
 
 	URL flag;
 
@@ -61,15 +86,23 @@ public class Country {
 
 		output += "Languages-\n";
 		for(Language language : languages) {
-			output += "\t\t\t" + language + "\n";
+			output += "\tName-\t\t" + language.name + "\n";
+			output += "\tNative Name-\t" + language.nativeName + "\n\n";
 		}
-		output += "\n";
 
 		output += "Currencies-\n";
 		for(Currency currency : currencies) {
-			output += "\t\t\t" + currency + "\n";
+			output += "\tName-\t\t" + currency.name + "\n";
+			output += "\tSymbol-\t\t" + currency.symbol + "\n" +
+								"\tCode-\t\t" + currency.code + "\n\n";
 		}
-		output += "\n";
+		output += "Neighbours-\n";
+
+		getNeighbours();
+
+		for(Neighbour i : neighbours) {
+			output += "\t\t\t" + i.name + "\n";
+		}
 
 		return output;
 	}
