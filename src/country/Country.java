@@ -67,16 +67,16 @@ public class Country {
 		String output = new String();
 		
 		output += ("Name-\t\t\t" + name + "\n");
-		output += ("Capital-\t\t" + capital + "\n\n");
+		output += ("Capital-\t\t\t" + capital + "\n\n");
 		output += ("Codes-\n" +
-							 "\tTwo letter-\t" + alpha2Code + "\n" +
+							 "\tTwo letter-\t\t" + alpha2Code + "\n" +
 							 "\tThree letter-\t" + alpha3Code + "\n\n");
 
 		output += ("Region-\t\t\t" + region + "\n" +
-							 "Sub-region-\t\t" + subregion + "\n" +
+							 "Sub-region-\t\t\t" + subregion + "\n" +
 							 "Area (sqkm)-\t\t" + area + "\n" +
-							 "Population-\t\t" + population + "\n" +
-							 "Demonym-\t\t" + demonym + "\n\n");
+							 "Population-\t\t\t" + population + "\n" +
+							 "Demonym-\t\t\t" + demonym + "\n\n");
 
 		output += "Calling codes-\n";
 		for(int i : callingCodes) {
@@ -96,14 +96,20 @@ public class Country {
 			output += "\tSymbol-\t\t" + currency.symbol + "\n" +
 								"\tCode-\t\t" + currency.code + "\n\n";
 		}
-		output += "Neighbours-\n";
 
 		getNeighbours();
+                if(neighbours.length > 0) {
+                    output += "Neighbours-\n";
 
-		for(Neighbour i : neighbours) {
-			output += "\t\t\t" + i.name + "\n";
-		}
+                    for(Neighbour i : neighbours) {
+                            output += "\t\t\t" + i.name + "\n";
+                    }
+                }
 
 		return output;
 	}
+        
+        public String getName() {
+            return name;
+        }
 }

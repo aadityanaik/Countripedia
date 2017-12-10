@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.Scanner;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.UnknownHostException;
 
 public class ApiHandler {
 	URL url;
@@ -14,7 +15,7 @@ public class ApiHandler {
 		url = new URL(apiURL);
 	}
 
-	public String generateGetResponse() throws IOException {
+	public String generateGetResponse() throws IOException, UnknownHostException {
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
 		connection.setRequestMethod("GET");
