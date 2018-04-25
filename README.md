@@ -2,6 +2,8 @@
 An application to get information about a country.<br/>
 Uses the restcountries api.<br/>
 
+Check out our Android Application- https://github.com/rincemust/Countripedia-Android
+
 # Usage
 Enter the name of the country in the search bar.<br/>
 As you enter the name, the countries will be filtered out.<br/>
