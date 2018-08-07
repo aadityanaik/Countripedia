@@ -1,6 +1,7 @@
 # Countripedia
 An application to get information about a country.<br/>
 Uses the restcountries api.<br/>
+Please check out our Countripedia Android App:- [Countripedia](http://shorturl.at/lwxRY)<br/>
 
 
 
